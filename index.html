@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="index.css"/>
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!--<p v-model="d"></p>-->
+			
+			<div class="todo">
+				<h1 class="todoT">My to do project</h1>
+				<input @keydown.enter="pushDate()"  v-model="inputT" class="inpText" type="text"  placeholder="请输入待办事项"/>
+				<ul>
+					<li v-for="(i,index) in dataArr" v-show="i.show">
+						<input type="checkbox" v-model="i.checked"/>
+						<span :class="{line:i.checked}">{{i.data}}===={{index}}</span>
+						<span @click="delData(index)" class="close">X</span>
+					</li>
+					
+				</ul>
+				
+				<div class="btnBox">
+					<button @click="showAll()" class="all">所有事件</button>
+					<button @click="willDo()" class="willDo">未完成事件</button>
+					<button @click="done()" class="done">已完成事件{{num}}</button>
+					<button @click="delDone()" class="delDone">清除完成事件</button>
+				</div>
+			</div>
+			
+			{{dataArr}}
+			
+		</div>
+		
+		
+		
+		
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			
+			//1、输入文本，敲击回车，将数据显示到页面中
+//				创建input框,设置回车敲击事件，获得input的值，并将其保存到数据中，显示到页面
+			//2、点击x，删除当前数据
+			//3、点击按钮，显示所有数据
+			//4、点击按钮，只显示未完成的事件
+			//5、点击按钮，只显示已经完成的事件
+			//6、点击按钮，删除已经完成的事件
+			
+			var vm = new Vue({
+				el:"#app",
+				data:{
+					inputT:"",
+					toggle:true,
+					dataArr:[]
+				},
+				methods:{
+					pushDate(){
+						if(this.inputT){
+							this.dataArr.push({data:this.inputT , checked:false,show:true});
+							this.inputT = "";
+						}
+					},
+					delData(ind){
+						this.dataArr.splice(ind,1);
+					},
+					//清除已完成事件
+					delDone(){
+						this.dataArr = this.dataArr.filter(function(val){
+							return val.checked ==false;
+						});
+					},
+					showAll(){
+						console.log("shouall");
+						
+						this.dataArr.forEach(function(ele){
+							ele.show = true;
+						});
+					},
+					done(){
+						this.dataArr.forEach(function(ele){
+							ele.show = ele.checked?true:false;
+						});
+					},
+					willDo(){
+						this.dataArr.forEach(function(ele){
+							ele.show = ele.checked?false:true;
+						});
+					}
+				},
+				computed:{
+					num(){
+						return this.dataArr.filter(function(val){
+							return val.checked == true;
+						}).length;
+//						console.log(a)
+					}
+					
+				}
+					
+			})
+			
+			
+		</script>
+	</body>
+</html>

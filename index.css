@@ -1,0 +1,74 @@
+
+*{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+.line{
+	text-decoration: line-through;
+	color: #CCCCCC;
+}
+
+.todo{
+	width: 600px;
+	/*height: 400px;*/
+	box-shadow: 0 0 3px 3px #ccc;
+	margin:20px auto;
+	padding-bottom: 10px;
+	/*text-align: center;*/
+}
+
+.todo .todoT{
+	text-align: center;
+	color: red;
+	padding:10px 0;
+}
+
+.todo .inpText{
+	width: 80%;
+	height: 36px;
+	padding:0 10px;
+	display: block;
+	margin:0 auto;
+	box-sizing: border-box;	
+	
+}
+.todo ul{
+	width: 80%;
+	margin:0 auto;
+	padding:10px 0;	
+	/*border: 1px solid red;*/
+}
+.todo ul li{
+	border: 1px solid #CCCCCC;
+	margin:5px;
+	position: relative;
+	padding:5px;
+}
+.todo .close{
+	position: absolute;
+	right: 10px;
+}
+.todo .btnBox{
+	width: 80%;
+	margin:0 auto;
+	padding:10px;
+	/*background-color: lightblue;*/
+}
+.todo .btnBox>button{
+	padding:10px;
+	
+}
+.todo .all{
+	background-color: skyblue;
+}
+.todo .willDo{
+	background-color: orange;
+}
+.todo .done{
+	background-color: lightgreen;
+}
+.todo .delDone{
+	background-color: #ccc;
+}
+
